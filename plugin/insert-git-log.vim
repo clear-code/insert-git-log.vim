@@ -7,7 +7,8 @@ function! s:InsertGitLog(...)
     let l:stagingFiles = system('git diff --cached --name-only')
     let l:result = system('git log -1 --oneline '.l:args.' '.l:stagingFiles)
     normal O
-    call setline('.', substitute(l:result, '\n\+$', '', ''))
+    call append('.', split(l:result, '\n'))
+    normal dd
 endfunction
 
 command! -nargs=? InsertGitLog :call s:InsertGitLog(<f-args>)
