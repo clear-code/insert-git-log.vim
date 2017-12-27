@@ -5,7 +5,7 @@ function! s:InsertGitLog(...)
       let l:args = ''
     end
     let l:stagingFiles = system('git diff --cached --name-only')
-    let l:result = system('git log -1 --oneline '.l:args.' '.l:stagingFiles)
+    let l:result = system('git log -1 --pretty="%s" '.l:args.' '.l:stagingFiles)
     normal O
     call append('.', split(l:result, '\n'))
     normal dd
