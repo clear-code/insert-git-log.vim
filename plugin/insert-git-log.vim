@@ -4,7 +4,7 @@ function! s:InsertGitLog(...)
   else
     let l:args = ''
   end
-  let l:result = system('git log -1 --pretty="%s" '.l:args)
+  let l:result = system('git log -10 --pretty="%s" '.l:args)
   normal O
   call append('.', split(l:result, '\n'))
   normal dd
